@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <title>Login & Join free</title>
+    <link rel="shortcut icon" href="https://www.banggood.in/favicon.ico" type="image/x-icon">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="main">
+      <!----------------------------------------- navbar ---------------------------------->
+      <div class="hex">
+        <div class="nav">
+          <div class="nav_img_Logo bg">
+            <a href="./index.html"></a>
+            
+          </div>
+        </div>
+      </div>
+      <!-- --------------------------------end navbar------------------------------------ -->
+      <!-- --------------------------------middle------------------------------------ -->
+      <div class="hexc">
+        <div class="container">
+          <div class="inner_container">
+            <div class="signIn_reg flex">
+              <p><a class="link_pages2" href="login.html"> SIGN IN</a></p>
+              <p><a class="link_pages" href="register.html">REGISTER</a></p>
+              <!--     -->
+            </div>
+
+            <!-- forms main bich wala    -->
+            <div class="email_pass">
+              <input
+                type="email"
+                placeholder="Email"
+                id="email_id"
+                required
+              /><br />
+              <input
+                type="Password"
+                placeholder="Password"
+                id="password"
+                required
+              /><br />
+            </div>
+
+            <button id="login" class="btn">Sign in</button>
+            <div class="">
+              <h5>Forgot your password ?</h5>
+            </div>
+
+            <div class="quick">Quick Access With</div>
+            <div class="logo">
+              <span
+                ><img
+                  class="icon"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyoU5p9uTvgIQ1vM60sl0eiLYcfRuJyCaK3w&usqp=CAU"
+                  alt=""
+              /></span>
+              <span
+                ><img
+                  class="icon"
+                  src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png"
+                  alt=""
+              /></span>
+              <span
+                ><img
+                  class="icon"
+                  src="https://www.transparentpng.com/thumb/google-logo/google-logo-png-icon-free-download-SUF63j.png"
+                  alt=""
+              /></span>
+              <span
+                ><img
+                  class="icon"
+                  src="https://cdn-icons-png.flaticon.com/512/145/145812.png"
+                  alt=""
+              /></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- --------------------------------middle  end ------------------------------------ -->
+      <!-- --------------------------------footer  start ------------------------------------ -->
+      
+  </body>
+</html>
+<script>
+  var user_data = JSON.parse(localStorage.getItem("login_data")) || [];
+
+  document.getElementById("login").addEventListener("click", check);
+
+  function check() {
+    var email_input = document.getElementById("email_id").value;
+    var pass_input = document.getElementById("password").value;
+
+    var success= 0
+    var nodata=0
+    var user_n=""
+    var wrong_pass=0
+
+
+    if(user_data=="")
+{
+    alert("Please Create an Account")
+    window.location.href="./register.html";
+
+}
+else{
+
+    for(var i = 0 ; i<user_data.length;i++)
+    {
+      
+      var x = user_data[i]
+
+      var user_value = Object.values(x)
+      
+      var email_data= user_value[0]
+      var pass_data= user_value[1]
+
+      if(email_input==email_data && pass_input ==pass_data )
+      {
+        success++
+        user_n=email_input
+      }
+      else if (email_input!=email_data && pass_input!=pass_data )
+      {
+        nodata++
+      }else if (email_input==email_data && pass_input!=pass_data )
+      {
+        wrong_pass++
+      }
+     
+
+    }
+if(success>0)
+{
+  alert( user_n + " is logged in")
+  window.location.href="./index.html";
+}
+else if(wrong_pass>0)
+{
+  alert( "invalid UserName or Password")
+
+}
+else if(nodata>0){
+  alert("! No Account Found! ")
+  window.location.href="./register.html";
+
+}
+
+
+  }
+}
+</script>
